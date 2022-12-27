@@ -32,7 +32,9 @@ public class SignupRequestDto {
     @Size(min = 8, max = 15, message = "비밀번호는 8 ~ 15자 이어야 합니다!")
 
     // Pattern = 지정한 정규과 대응되는 문자열이어야 한다. Require : String regexp => 정규식 문자열을 지정한다
-    @Pattern(regexp = "[a-zA-Z0-9]*$")
+    //'숫자', '문자', '특수문자' 무조건 1개 이상, 비밀번호 '최소 8자에서 최대 15자'까지 허용
+    //(특수문자는 정의된 특수문자만 사용 가능)
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\\d~!@#$%^&*()+|=]{8,15}$")
     private String password;
 
     private boolean admin = false;
